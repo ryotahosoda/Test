@@ -1,0 +1,19 @@
+digraph {
+	node [shape=record style=filled]
+	start [color=pink shape=circle]
+	end [color=pink shape=circle]
+	node1 [label=a]
+	start -> node1 [label=match]
+	node2 [label=g]
+	node1 -> node2 [label=match]
+	node3 [label=e]
+	node2 -> node3 [label=match]
+	node4 [label=n]
+	node3 -> node4 [label=match]
+	node5 [label=c]
+	node4 -> node5 [label=insertion]
+	node6 [label="t|y"]
+	node4 -> node6 [label=replacement]
+	node5 -> node6 [label=replacement]
+	node6 -> end
+}
