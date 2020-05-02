@@ -88,8 +88,3 @@ def combinations(n, r):
     print(n)
     print(r)
     return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
-
-
-if __name__ == '__main__':
-    ans = [[1], [1, 2], []]
-    print(cacl_min(ans))
