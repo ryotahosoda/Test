@@ -1,6 +1,7 @@
 import copy
 import calculation as calc
 import itertools
+import numpy as np
 
 
 # 4/30 重複する組み合わせの中から正しい組み合わせを検索して、最適なI,D,R_ansを返す関数を作成
@@ -80,16 +81,39 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
         #  計算結果をまとめ用配列に格納
         all_ans_size.append(result[1])
 
+    # IとDの各々のサイズが混在してた場合は大きいほうを使うようにする処理（[1]と[1,4]とか）
+    I_dig = [0, 0]  # [桁数1,桁数2]
+    D_dig = [0, 0]
+    for m in all_ans:
+        tmp_i = calc.calc_i_d_size(m[0])
+        I_dig[0] += tmp_i[0]
+        I_dig[1] += tmp_i[1]
+        tmp_d = calc.calc_i_d_size(m[1])
+        D_dig[0] += tmp_d[0]
+        D_dig[1] += tmp_d[1]
+
+    # 片方1以上、片方0はそのまま、両方1以上は２の方だけ使う
+    if I_dig[0] >= 1 and I_dig[1] >= 1:
+        delete_pair_list(all_ans, all_ans_size, 0)
+    elif D_dig[0] >= 1 and D_dig[1]:
+        delete_pair_list(all_ans, all_ans_size, 1)
+
     #  最小値を選択して、インデックスを検索　ここを変更する
-    index = all_ans_size.index(min(all_ans_size))
+    box = []
+    data = np.nonzero(all_ans_size)
+    for k in data[0]:
+        box.append(all_ans_size[k])
+    index = all_ans_size.index(min(box))
 
     #  インデックスを使って各ミスを代入する。
     I_ans = all_ans[index][0]
     D_ans = all_ans[index][1]
     R_ans = all_ans[index][2]
 
+    print(min(all_ans_size))
     print(all_ans)
     print(all_ans_size)
+    print(index)
     print(I_ans)
     print(D_ans)
     print(R_ans)
@@ -150,6 +174,14 @@ def list_position(r_result):
                         box.clear()
                         box.append(r_result[k])
     return tmp
+
+
+# 5/2 サイズが1のペアを削除する
+def delete_pair_list(all_ans, all_ans_size, ans_type):
+    # ans_type==0はI,1はD
+    for m in range(len(all_ans)):
+        if len(all_ans[m][ans_type]) == 1:
+            all_ans_size[m] = 0
 
 
 if __name__ == '__main__':

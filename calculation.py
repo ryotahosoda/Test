@@ -71,6 +71,17 @@ def calc_i_d_r(r_num_list, r_pw_len, e_num_list, e_pw_len):
     return ans
 
 
+#  IまたはDの桁が１と2が混在している時を探す関数
+def calc_i_d_size(ans):
+    digit = [0, 0]
+    if len(ans) == 1:
+        digit[0] += 1
+    elif len(ans) == 2:
+        digit[1] += 1
+
+    return digit
+
+
 #  ある1つの組み合わせの桁の最小値を計算
 def calc_min(ans):
     res = 0

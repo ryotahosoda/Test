@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb8b1c4f-5b67-4f9e-a974-376952582e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ApAns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ans.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElementCalc.py" beforeDir="false" afterPath="$PROJECT_DIR$/ElementCalc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Levenshtein.py" beforeDir="false" afterPath="$PROJECT_DIR$/Levenshtein.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculation.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/correct_ans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/correct_ans.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match.txt" beforeDir="false" afterPath="$PROJECT_DIR$/match.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pw.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verify.py" beforeDir="false" afterPath="$PROJECT_DIR$/verify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,8 +225,17 @@
       <workItem from="1588342064506" duration="4260000" />
       <workItem from="1588346390461" duration="1154000" />
       <workItem from="1588383679406" duration="14723000" />
-      <workItem from="1588410300110" duration="431000" />
+      <workItem from="1588410300110" duration="3544000" />
+      <workItem from="1588427209741" duration="3942000" />
     </task>
+    <task id="LOCAL-00001" summary="verify.pyの中で重複ありなしの部分を簡潔にした">
+      <created>1588410819503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588410819503</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,51 +244,80 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="verify.pyの中で重複ありなしの部分を簡潔にした" />
+    <option name="LAST_COMMIT_MESSAGE" value="verify.pyの中で重複ありなしの部分を簡潔にした" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="414" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588253837546">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="414" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1588253837546" />
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1588410383350">
+    <state x="588" y="174" key="CommitChangelistDialog2" timestamp="1588410818769">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588410383350" />
-    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1588410383350">
+    <state x="588" y="174" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1588410818769" />
+    <state x="740" y="321" key="FileChooserDialogImpl" timestamp="1588412546697">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588410383350" />
-    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1588410383350">
+    <state x="740" y="321" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1588412546697" />
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1588431361144">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588410383350" />
-    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1588410383350">
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588431361144" />
+    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1588431361144">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588410383350" />
-    <state width="1877" height="395" key="GridCell.Tab.1.bottom" timestamp="1588401668805">
+    <state width="1877" height="328" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588431361144" />
+    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1588431361144">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588401668805" />
-    <state width="1877" height="395" key="GridCell.Tab.1.center" timestamp="1588401668805">
+    <state width="1877" height="328" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588431361144" />
+    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1588431361144">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588401668805" />
-    <state width="1877" height="395" key="GridCell.Tab.1.left" timestamp="1588401668804">
+    <state width="1877" height="328" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588431361144" />
+    <state width="1877" height="395" key="GridCell.Tab.1.bottom" timestamp="1588431346678">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588401668804" />
-    <state width="1877" height="395" key="GridCell.Tab.1.right" timestamp="1588401668805">
+    <state width="1877" height="395" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588431346678" />
+    <state width="1877" height="395" key="GridCell.Tab.1.center" timestamp="1588431346678">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588401668805" />
+    <state width="1877" height="395" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588431346678" />
+    <state width="1877" height="395" key="GridCell.Tab.1.left" timestamp="1588431346678">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="395" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588431346678" />
+    <state width="1877" height="395" key="GridCell.Tab.1.right" timestamp="1588431346678">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="395" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588431346678" />
+    <state x="468" y="222" key="SettingsEditor" timestamp="1588412688521">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="468" y="222" key="SettingsEditor/0.0.1920.1160@0.0.1920.1160" timestamp="1588412688521" />
     <state width="968" height="588" key="XDebugger.FullValuePopup" timestamp="1588389050787">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="968" height="588" key="XDebugger.FullValuePopup/0.0.1920.1160@0.0.1920.1160" timestamp="1588389050787" />
-    <state x="656" y="405" key="com.intellij.ide.util.TipDialog" timestamp="1588410301201">
+    <state x="656" y="405" key="com.intellij.ide.util.TipDialog" timestamp="1588427277887">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="656" y="405" key="com.intellij.ide.util.TipDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1588410301201" />
+    <state x="656" y="405" key="com.intellij.ide.util.TipDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1588427277887" />
     <state x="685" y="126" width="732" height="909" key="find.popup" timestamp="1588390494558">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -292,6 +325,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/calculation.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ElementCalc.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -303,7 +348,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Test$test.coverage" NAME="test Coverage Results" MODIFIED="1588253828815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Test$verify.coverage" NAME="verify Coverage Results" MODIFIED="1588410383334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Test$verify.coverage" NAME="verify Coverage Results" MODIFIED="1588431361144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$calculation.coverage" NAME="calculation Coverage Results" MODIFIED="1588325669930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$ElementCalc.coverage" NAME="ElementCalc Coverage Results" MODIFIED="1588392022124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$Levenshtein.coverage" NAME="Levenshtein Coverage Results" MODIFIED="1587989244972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

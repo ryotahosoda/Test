@@ -78,7 +78,6 @@ def print_results(results: List[Tuple[str, str]]) -> None:
     i = 0
     print(ans)
     make_csv(ans)
-    print(result[0], ': ', dict[result[1]])
 
 
 def make_csv(ans):
