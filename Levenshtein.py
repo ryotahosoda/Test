@@ -1,5 +1,6 @@
 from sys import argv, exit
 from typing import Tuple, List
+import csv
 
 dict = {'m': 'match', 'i': 'insertion', 'd': 'deletion', 'r': 'replacement'}
 
@@ -17,9 +18,9 @@ def initialize_table(word1: str, word2: str) -> List[List[Tuple[int, int, int]]]
     table = [[(0, 0, 0)] * (len(word1) + 1) for i in range(len(word2) + 1)]
 
     for column in range(1, len(table[0])):
-        table[0][column] = table[0][column - 1][0] + 7, 0, column - 1
+        table[0][column] = table[0][column - 1][0] + 1, 0, column - 1
     for row in range(1, len(table)):
-        table[row][0] = table[row - 1][0][0] + 7, row - 1, 0
+        table[row][0] = table[row - 1][0][0] + 1, row - 1, 0
     return table
 
 
@@ -29,9 +30,9 @@ def calculate_cost(table: List[List[Tuple[int, int, int]]], word1: str, word2: s
             if word1[column - 1] == word2[row - 1]:
                 table[row][column] = table[row - 1][column - 1][0], row - 1, column - 1
             else:
-                up_left = (table[row - 1][column - 1][0] + 10, row - 1, column - 1)
-                left = (table[row][column - 1][0] + 7, row, column - 1)
-                up = (table[row - 1][column][0] + 7, row - 1, column)
+                up_left = (table[row - 1][column - 1][0] + 1, row - 1, column - 1)
+                left = (table[row][column - 1][0] + 1, row, column - 1)
+                up = (table[row - 1][column][0] + 1, row - 1, column)
                 table[row][column] = sorted([up_left, left, up], key=lambda x: x[0])[0]
     return table
 
@@ -62,20 +63,39 @@ def judge_result(table: List[List[Tuple[int, int, int]]], word1: str, word2: str
 
 
 def print_results(results: List[Tuple[str, str]]) -> None:
+    i = 1
+    ans = []
     for result in results:
-        print(result[0], ': ', dict[result[1]])
+        if dict[result[1]] != "match":
+            if dict[result[1]] == "replacement":
+                ans.append([i, result[0], 'R'])
+            elif dict[result[1]] == "insertion":
+                ans.append([i, result[0], 'I'])
+            elif dict[result[1]] == "deletion":
+                ans.append([i, result[0], 'D'])
+        i += 1
+
+    i = 0
+    print(ans)
+    make_csv(ans)
+    print(result[0], ': ', dict[result[1]])
+
+
+def make_csv(ans):
+    f = open('correct_ans.csv', 'a', newline="")
+    writer = csv.writer(f)
+    writer.writerow(ans)
+
+    f.close()
 
 
 if __name__ == '__main__':
-    #validation_argv()
-    """word1, word2 = argv[1], argv[2]"""
-    word1 = "coffee"
-    word2 = "cofeef"
-
+    word1 = "abcdef"
+    word2 = "cdefA"
     table = initialize_table(word1, word2)
 
     calculated_table = calculate_cost(table, word1, word2)
-    print_table(calculated_table)
+    # print_table(calculated_table)
 
     results = judge_result(calculated_table, word1, word2)
     print_results(results)

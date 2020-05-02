@@ -1,294 +1,311 @@
-import itertools
-import copy
-import math
+import calculation as calc
+import Levenshtein as Lev
+import file
+import password as pw
+import ElementCalc as el
 
-# 許容ミス桁
+#  許容ミス桁
 miss_digit = 2
 
 
-def change_register_pw(password):
-    PW = list(password)
-    # 桁数を計算する 12桁想定なので12C2
-    len_password = len(PW)
-    digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 2)), reverse=True)
-
-    # 組み合わせを計算する
-    comb_password = list(itertools.combinations(PW, len_password - miss_digit))
-
-    # サーバ登録情報（部分文字列、含まれない文字の桁番号）
-    register_info = []
-    for i in range(len(digit)):
-        temp = [comb_password[i], digit[i]]
-        register_info.append(temp)
-
-    return register_info
-
-
-def change_enter_pw(password, len_reg_password):
-    # 桁数を計算する 10-14を許容
-    PW = list(password)
-    len_password = len(PW)
-    x = len_password - len_reg_password
-    if x == 0:
-        # 桁数が同じ
-        digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 2)),
-                       reverse=True)
-    elif x < 0:
-        if x == -1:
-            digit = sorted(list(range(1, len_password + 1)),
-                           reverse=True)
-            # digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 1)),
-            #                reverse=True)
-            # print(list(range(1, len_password + 1)))
-        elif x == -2:
-            # digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 0)),
-            #                reverse=True)
-            digit = [0, ]
-        else:
-            # エラー
-            return -1
-    else:
-        if x == 1:
-            digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 3)),
-                           reverse=True)
-        elif x == 2:
-            digit = sorted(list(itertools.combinations(list(range(1, len_password + 1)), 4)),
-                           reverse=True)
-        else:
-            # エラー
-            return -1
-
-    # 組み合わせを計算する
-    comb_password = list(itertools.combinations(PW, len_reg_password - miss_digit))
-
-    # サーバ登録情報（部分文字列、含まれない文字の桁番号）
-    enter_info = []
-    for i in range(len(comb_password)):
-        temp = [comb_password[i], digit[i]]
-        enter_info.append(temp)
-
-    return enter_info
-
-
+# r_pw　登録パスワード　e_pw登録パスワード
 def compare(r_pw, e_pw, len_pw, enter_len_pw):
     r_result = []  # 登録パスワード側の一致部分文字列
     e_result = []  # 入力パスワード側の一致部分文字列
+
+    if enter_len_pw > len_pw + miss_digit or enter_len_pw < len_pw - miss_digit:
+        return "入力パスワードの桁数が+-3以上です"
+
     for i in r_pw:
         for j in e_pw:
             if i[0] == j[0]:
                 r_result.append(i)
                 e_result.append(j)
 
-    print(r_result)
-    print(e_result)
-    return search(r_result, e_result, len_pw, enter_len_pw)
-    # if combinations(len_pw - 1, len_pw - 2) == len(r_result) and
+    file.writefile(r_result, 5)
+    file.writefile(e_result, 6)
+
+    if r_pw == e_pw:
+        return "一致しています"
+
+    else:
+        return search(r_result, e_result, len_pw, enter_len_pw)
 
 
-def search(r_pw, e_pw, len_pw, enter_len_pw):
-    r_result = []
-    r_num_list = []
-    e_num_list = []
-    I_ans = []
-    D_ans = []
-    R_ans = []
-    Total_ans = []
+def search(r_result, e_result, len_pw, enter_len_pw):
+    str_result = []  # [('a', 'b', 'c'), ('a', 'b', 'd'), ('a', 'c', 'd'), ('b', 'c', 'd')]など一致文字列の配列
+    r_num_list = []  # [(4, 5), (3, 5), (2, 5), (1, 5)]など登録一致文字列の含まれない桁数
+    e_num_list = []  # [(4, 5), (3, 5), (2, 5), (1, 5)]など入力一致文字列の含まれない桁数
+    Total_ans = []  # ['I', [5]]など最終の答えを返す
     flag = 0
-    for i in r_pw:
-        r_result.append(i[0])
 
-    for i in r_pw:
-        r_num_list.append(i[1])
+    # 重複あり、なしに関わらず各ansを計算する
+    tmp = el.element_calc(r_result, e_result, len_pw, enter_len_pw)
 
-    for i in e_pw:
-        e_num_list.append(i[1])
+    print("r_result (r_pw) = %s" % r_result)
+    print("e_result (e_pw) = %s" % e_result)
+    print("len_pw = %d" % len_pw)
+    print("enter_len_pw = %d" % enter_len_pw)
 
-    print("r_result = ", end='')
-    print(r_result)
-    print("r_num_list = ", end='')
-    print(r_num_list)
-    print("e_num_list = ", end='')
-    print(e_num_list)
+    file.make_match2(r_result, e_result)
 
-    for i in range(len(r_result)):
-        if r_result.count(r_result[i]) > 1:
+    #  重複を数える
+    for i in range(len(str_result)):
+        if str_result.count(str_result[i]) > 1:
             flag += 1
-
-    # 重複が無い時
+    # 重複が無い時(入力ミスをした文字が登録パスワードに含まれていない場合？)
     if flag == 0:
-        I_ans = cul_number(r_num_list, len_pw)
-        D_ans = cul_number(e_num_list, enter_len_pw)
-        R_ans = cul_replacement(I_ans, D_ans)
+
+        I_ans = tmp[0]
+        D_ans = tmp[1]
+        R_ans = tmp[2]
+
+        # if D_ans == []:
+        #     D_ans.append(0)
+        # if R_ans == []:
+        #     R_ans.append(0)
         print("I_ans is ", end='')
         print(I_ans)
+        file.writefile(I_ans, 7)
         print("D_ans is ", end='')
         print(D_ans)
+        file.writefile(D_ans, 8)
         print("R_ans is ", end='')
         print(R_ans)
+        file.writefile(R_ans, 9)
+        # 条件式が甘い
+        #  I=1
+        if len(I_ans) == 1 and D_ans == []:
+            Total_ans.append("I")
+            Total_ans.append(I_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  I=2
+        elif len(I_ans) == 2 and D_ans == []:
+            Total_ans.append("I")
+            Total_ans.append(I_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  D=1
+        elif len(D_ans) == 1 and I_ans == []:
+            Total_ans.append("D")
+            Total_ans.append(D_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  D=2
+        elif len(D_ans) == 2 and I_ans == []:
+            Total_ans.append("D")
+            Total_ans.append(D_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  R=1かI=1,D=1
+        elif len(I_ans) == 1 and len(D_ans) == 1:
+            #  R=1
+            if I_ans == D_ans:
+                Total_ans.append("R")
+                Total_ans.append(R_ans)
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            #  I=1,D=1
+            else:
+                a = ["I", I_ans[0]]
+                Total_ans.append(a)
+                b = ["D", D_ans[0]]
+                Total_ans.append(b)
+                file.writefile(Total_ans, 10)
+                return Total_ans
+        #  R=2(特殊パターンI=1,D=1、順番が違うやつ)
+        elif I_ans == [] and D_ans == [] and len(R_ans) == 2:
+            Total_ans.append(["R", R_ans[0]])
+            Total_ans.append(["R", R_ans[1]])
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  I=2,D=1（許容しないけど）かR=1,I=1
+        elif len(I_ans) == 2 and len(D_ans) == 1:
+            #  R=1,I=1
+            if D_ans[0] in I_ans:
+                R_ans.append(D_ans[0])
+                I_ans.remove(D_ans[0])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["I", I_ans[0]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            #  R=1,I=1([[('b', 'd', 'e', 'f'), (1, 3)]]と[[('b', 'd', 'e', 'f'), 2]]の時)
+            elif I_ans[0] < D_ans[0] < I_ans[1] and I_ans[1] - 1 == D_ans[0]:
+                R_ans.append(D_ans[0])  # 入力パスワードのミスの位置を基準に考える（Rを優先する）
+                #  もし登録パスワードに対する入力ミスの位置を基準にするならR_ans.append(I_ans[1])
+                I_ans.remove(I_ans[1])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["I", I_ans[0]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            else:
+                Total_ans.append("I=2,D=1は許容しない")
+                file.writefile(Total_ans, 11)
+                return "I=2,D=1は許容しない"
+        #  I=1,D=2(許容しないけど)かR=1,D=1
+        elif len(I_ans) == 1 and len(D_ans) == 2:
+            #  R=1,D=1
+            if I_ans[0] in D_ans:
+                R_ans.append(I_ans[0])
+                D_ans.remove(I_ans[0])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["D", D_ans[0]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            #  R=1,D=1(隣接する時)
+            elif D_ans[0] < I_ans[0] < D_ans[1] and D_ans[1] - 1 == I_ans[0]:
+                R_ans.append(D_ans[1])
+                D_ans.remove(D_ans[1])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["D", D_ans[0]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            else:
+                Total_ans.append("I=1,D=2は許容しない")
+                file.writefile(Total_ans, 11)
+                return "I=1,D=2は許容しない"
+        #  I=2,D=2(許容しないけど)かR=2
+        elif len(I_ans) == 2 and len(D_ans) == 2:
+            #  R=2
+            if I_ans[0] in D_ans and I_ans[1] in D_ans:
+                R_ans.append(I_ans[0])
+                R_ans.append(I_ans[1])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["R", R_ans[1]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            else:
+                Total_ans.append("I=2,D=2は許容しない")
+                file.writefile(Total_ans, 11)
+                return "I=2,D=2は許容しない"
 
-        # R=1
-        if I_ans == D_ans == R_ans and len(I_ans) == 1:
+        # どれも一致しない時
+        else:
+            Total_ans.append("どれにも一致しない")
+            file.writefile(Total_ans, 11)
+            return -1
+    # 重複がある時(I=1,2は存在しない)
+    elif flag != 0:
+        #  重複している部分を両方削除して、残ったものをリストにする
+        new_str_result = []
+        new_r_num_list = []
+        new_e_num_list = []
+        temp = [0] * len(str_result)
+        is_same = False
+        for k in range(len(str_result)):
+            for l in range(len(str_result)):
+                if k != l:
+                    if str_result[k] == str_result[l]:
+                        if is_same:
+                            is_same = False
+                        else:
+                            temp[l] = 1
+                            is_same = True
+        print("temp = ", end="")
+        print(temp)
+        for m in range(len(str_result)):
+            if temp[m] == 0:
+                new_str_result.append(str_result[m])
+                new_r_num_list.append(r_num_list[m])
+                new_e_num_list.append(e_num_list[m])
+
+        print("Change str_result = ", end='')
+        print(new_str_result)
+        print("Change r_num_list = ", end='')
+        print(new_r_num_list)
+        print("Change e_num_list = ", end='')
+        print(new_e_num_list)
+
+        #  何桁目にミスがあるか ここの動きの調査！
+        ans = calc.calc_i_d_r(r_num_list, len_pw, e_num_list, enter_len_pw)
+        I_ans = ans[0]
+        D_ans = ans[1]
+        R_ans = ans[2]
+
+        file.writefile(I_ans, 7)
+        file.writefile(D_ans, 8)
+        file.writefile(R_ans, 9)
+        print(I_ans)
+        print(D_ans)
+        print(R_ans)
+        #  D=1
+        if len(D_ans) == 1 and I_ans == []:
+            Total_ans.append("D")
+            Total_ans.append(D_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  D=1（隣接しているとき）かR=1,D=1
+        elif len(D_ans) == 2 and len(I_ans) == 1:
+            #  D=1（隣接しているとき）
+            if I_ans[0] in D_ans:
+                D_ans.remove(I_ans[0])
+                Total_ans.append("D")
+                Total_ans.append(D_ans)
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            #  R=1,D=1
+            elif D_ans[0] < I_ans[0] < D_ans[1] and D_ans[1] - 1 == I_ans[0]:
+                R_ans.append(D_ans[1])
+                D_ans.remove(D_ans[1])
+                Total_ans.append(["R", R_ans[0]])
+                Total_ans.append(["D", D_ans[0]])
+                file.writefile(Total_ans, 10)
+                return Total_ans
+            else:
+                Total_ans.append("D=1（隣接しているとき）かR=1,D=1のどちらでもない")
+                file.writefile(Total_ans, 11)
+                return "D=1（隣接しているとき）かR=1,D=1のどちらでもない"
+        #  D=2
+        elif len(D_ans) == 2 and I_ans == []:
+            Total_ans.append("D")
+            Total_ans.append(D_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  D=1（隣接しているとき）
+        elif len(D_ans) == 3 and len(I_ans) == 1:
+            D_ans.remove(I_ans[0])
+            Total_ans.append("D")
+            Total_ans.append(D_ans)
+            file.writefile(Total_ans, 10)
+            return Total_ans
+        #  R=1
+        elif len(I_ans) == 1 and len(D_ans) == 1:
+            if I_ans == D_ans:
+                Total_ans.append("R")
+                Total_ans.append(R_ans)
+                file.writefile(Total_ans, 10)
+                return Total_ans
+        #  R=1(特殊パターン：隣接しているとき)
+        elif len(I_ans) == len(D_ans) == 2 and len(new_str_result) == 1:
+            R_ans.remove(R_ans[0])
             Total_ans.append("R")
             Total_ans.append(R_ans)
+            file.writefile(Total_ans, 10)
             return Total_ans
-        # R=2
-        elif I_ans == D_ans == R_ans and len(I_ans) == 2:
-            Total_ans.append(["R", "R"])
-            Total_ans.append(R_ans)
-            return Total_ans
-        # I=1,D=1
 
-        # I=1
-        elif len(I_ans) == 1 and I_ans != []:
-            Total_ans.append("I")
-            Total_ans.append(I_ans)
-            return Total_ans
-        # I=1,R=1
-        elif len(I_ans) == 2 and len(R_ans) == 1:
-            a = []
-            a.append("R")
-            a.append(R_ans)
-            Total_ans.append(a)
-            a = []
-            I_ans.remove(R_ans[0])
-            a.append("I")
-            a.append(I_ans)
-            Total_ans.append(a)
-            return Total_ans
-        # I=2
-        elif len(I_ans) == 2 and D_ans[0] == 0 and len(R_ans) == 0:
-            Total_ans.append("I")
-            Total_ans.append(I_ans)
-            return Total_ans
-        # D=1
-        elif len(I_ans) == 0 and len(D_ans) == 1 and len(R_ans) == 0:
-            Total_ans.append("D")
-            Total_ans.append(D_ans)
-            return Total_ans
-        elif len(I_ans) == 0 and len(D_ans) == 2 and len(R_ans) == 0:
-            Total_ans.append("D")
-            Total_ans.append(D_ans)
-            return Total_ans
-    # 重複がある時
-    elif flag != 0:
-        print("flag=", end="")
-        print(flag)
-        print(r_num_list.count(r_num_list[0]))
-        return -1
-
-def cul_replacement(r_ans, e_ans):
-    result = []
-    if len(r_ans) == len(e_ans):
-        for i in range(len(r_ans)):
-            for j in range(len(e_ans)):
-                if r_ans[i] == e_ans[j]:
-                    result.append(r_ans[i])
-    elif len(r_ans) > len(e_ans):
-        for i in range(len(r_ans)):
-            for j in range(len(e_ans)):
-                if r_ans[i] == e_ans[j]:
-                    result.append(r_ans[i])
-    else:
-        for i in range(len(e_ans)):
-            for j in range(len(r_ans)):
-                if e_ans[i] == r_ans[j]:
-                    result.append(e_ans[i])
-    return result
-
-
-def cul_number(list, length):
-    count = 0
-    ans = []
-    for i in range(1, length+1):
-        count = 0
-        for j in list:
-            if type(j) is int:
-                j = j,
-            if i in j:
-                count += 1
-            if count == len(list):
-                ans.append(i)
-                count = 0
-    return ans
-
-
-def x(p):
-    path = 'result.txt'
-    f = open(path, mode='w')
-    path2 = 'result2.txt'
-    f2 = open(path2, mode='w')
-    # 正解PW
-    value = ['a', 'b', 'c', 'd', 'e']
-    v_len = len(value)
-    v_list = list(itertools.combinations(value, v_len - 2))
-    number = [1, 2, 3, 4, 5]
-    n_list = sorted(list(itertools.combinations(number, v_len - 3)), reverse=True)
-    current = [value, number]
-    print(current)
-    print(current[1][1])
-
-    # 入力PW
-    p_len = len(p)
-    p_list = list(itertools.combinations(p, p_len - 3))
-    p_number = list(range(1, p_len + 1))
-    pn_list = sorted(list(itertools.combinations(p_number, p_len - 3)), reverse=True)
-    print(p_list)
-
-    # 入力に対して正解を比較していく,p_list=入力,v_list=正解
-    match_server_pw = []
-    match_enter_pw = []
-    match_server_num = []
-    match_enter_num = []
-
-    for i in range(len(p_list)):
-        for j in range(len(v_list)):
-            if p_list[i] == v_list[j]:
-                match_enter_pw.append(copy.copy(p_list[i]))
-                match_enter_num.append(copy.copy(pn_list[i]))
-                f.write(str(v_list[j]))
-                f.write(str(n_list[j]))
-                f.write('=')
-                f.write(str(p_list[i]))
-                f.write(str(pn_list[i]))
-                f.write('\n')
-                if v_list[j] not in match_server_pw:
-                    match_server_pw.append(copy.copy(v_list[j]))
-                    match_server_num.append(copy.copy(n_list[j]))
-                else:
-                    f2.write(str(v_list[j]))
-                    f2.write(str(n_list[j]))
-                    f2.write('=')
-                    f2.write(str(p_list[i]))
-                    f2.write(str(pn_list[i]))
-                    f2.write('\n')
-
-    print("正解PWの個数=%d, 入力PWの個数=%d" % (len(match_server_pw), len(match_enter_pw)))
-    print("正解PW=", end="")
-    print(match_server_pw)
-    print("正解PWの桁=", end="")
-    print(match_server_num)
-    print("入力PW=", end="")
-    print(match_enter_pw)
-    print("入力PWの桁=", end="")
-    print(match_enter_num)
-    f.close()
-    f2.close()
-
-
-def combinations(n, r):
-    return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
+        else:
+            Total_ans.append("例外")
+            file.writefile(Total_ans, 11)
+            return -1
 
 
 if __name__ == '__main__':
-    i = compare(change_register_pw("abcde"), change_enter_pw("abcdee", 5), 5, 5)
-    print(i)
-    # x(['a', 'b', 'c', 'd', 'e', 'a'])
-    # change_register_pw(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'])
-    # change_enter_pw(['a', 'B', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j', 'k', 'l'], 12)
-    # a =[]
-    # k = []
-    # for i in range(4):
-    #     k = i,
-    #     a.append(k)
-    #     print(type(k))
-    # print(a)
+    f2 = open('pw.txt', 'r')
+    line = f2.readline().rstrip('\r\n')
+
+    while line:
+        rg_pw = "abcdef"  # 登録パスワード
+        file.make_match(rg_pw, line)
+        file.writefile(rg_pw, 1)
+        file.writefile(line, 2)
+        table = Lev.initialize_table(line, rg_pw)
+        calculated_table = Lev.calculate_cost(table, line, rg_pw)
+        results = Lev.judge_result(calculated_table, line, rg_pw)
+        Lev.print_results(results)
+        i = compare(pw.change_register_pw(rg_pw), pw.change_enter_pw(line, len(rg_pw)), len(rg_pw), len(line))
+        print(i)
+        line = f2.readline().rstrip('\r\n')
+        file.writefile("a", 12)
+
+    f2.close()
