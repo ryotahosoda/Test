@@ -35,9 +35,6 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
         I_ans = ans[0]
         D_ans = ans[1]
         R_ans = ans[2]
-        print("str_result = %s" % str_result)
-        print("r_num_list = %s" % r_num_list)
-        print("e_num_list = %s" % e_num_list)
         return [I_ans, D_ans, R_ans]
 
     # 重複するペアをまとめる処理
@@ -84,16 +81,26 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
     # IとDの各々のサイズが混在してた場合は大きいほうを使うようにする処理（[1]と[1,4]とか）
     I_dig = [0, 0]  # [桁数1,桁数2]
     D_dig = [0, 0]
+    R_dig = [0, 0]
     for m in all_ans:
-        tmp_i = calc.calc_i_d_size(m[0])
+        tmp_i = calc.calc_i_d_r_size(m[0])
         I_dig[0] += tmp_i[0]
         I_dig[1] += tmp_i[1]
-        tmp_d = calc.calc_i_d_size(m[1])
+        tmp_d = calc.calc_i_d_r_size(m[1])
         D_dig[0] += tmp_d[0]
         D_dig[1] += tmp_d[1]
+        tmp_r = calc.calc_i_d_r_size(m[2])
+        R_dig[0] += tmp_r[0]
+        R_dig[1] += tmp_r[1]
 
-    # 片方1以上、片方0はそのまま、両方1以上は２の方だけ使う
-    if I_dig[0] >= 1 and I_dig[1] >= 1:
+    print("I_dig = %s" % I_dig)
+    print("D_dig = %s" % D_dig)
+    print("R_dig = %s" % R_dig)
+    # Rが存在する場合は最優先する
+    if R_dig[0] >= 1 or R_dig[1] >= 1:
+        delete_no_r(all_ans, all_ans_size, 2)
+    # 片方1以上、片方0はそのまま、両方1以上は２の方だけ使う その時単体のものも削除する
+    elif I_dig[0] >= 1 and I_dig[1] >= 1:
         delete_pair_list(all_ans, all_ans_size, 0)
     elif D_dig[0] >= 1 and D_dig[1]:
         delete_pair_list(all_ans, all_ans_size, 1)
@@ -110,13 +117,13 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
     D_ans = all_ans[index][1]
     R_ans = all_ans[index][2]
 
-    print(min(all_ans_size))
-    print(all_ans)
-    print(all_ans_size)
-    print(index)
-    print(I_ans)
-    print(D_ans)
-    print(R_ans)
+    # print(min(all_ans_size))
+    print("all_ans = %s" % all_ans)
+    print("all_ans_size = %s" % all_ans_size)
+    print("index = %d" % index)
+    print("I_ans = %s" % I_ans)
+    print("D_ans = %s" % D_ans)
+    print("R_ans = %s" % R_ans)
 
     return [I_ans, D_ans, R_ans]
 
@@ -180,7 +187,14 @@ def list_position(r_result):
 def delete_pair_list(all_ans, all_ans_size, ans_type):
     # ans_type==0はI,1はD
     for m in range(len(all_ans)):
-        if len(all_ans[m][ans_type]) == 1:
+        if len(all_ans[m][ans_type]) <= 1:
+            all_ans_size[m] = 0
+
+
+# 5/2 Rが存在する場合、Rが存在しないペアは削除する
+def delete_no_r(all_ans, all_ans_size, ans_type):
+    for m in range(len(all_ans)):
+        if len(all_ans[m][ans_type]) == 0:
             all_ans_size[m] = 0
 
 

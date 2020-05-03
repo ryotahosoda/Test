@@ -1,4 +1,3 @@
-import calculation as calc
 import Levenshtein as Lev
 import file
 import password as pw
@@ -38,10 +37,10 @@ def search(r_result, e_result, len_pw, enter_len_pw):
     # 重複あり、なしに関わらず各ansを計算する
     tmp = el.element_calc(r_result, e_result, len_pw, enter_len_pw)
 
-    print("r_result (r_pw) = %s" % r_result)
-    print("e_result (e_pw) = %s" % e_result)
-    print("len_pw = %d" % len_pw)
-    print("enter_len_pw = %d" % enter_len_pw)
+    # print("r_result (r_pw) = %s" % r_result)
+    # print("e_result (e_pw) = %s" % e_result)
+    # print("len_pw = %d" % len_pw)
+    # print("enter_len_pw = %d" % enter_len_pw)
 
     file.make_match2(r_result, e_result)
 
@@ -49,12 +48,12 @@ def search(r_result, e_result, len_pw, enter_len_pw):
     D_ans = tmp[1]
     R_ans = tmp[2]
 
-    print("I_ans is %s" % I_ans)
-    file.writefile(I_ans, 7)
-    print("D_ans is %s" % D_ans)
-    file.writefile(D_ans, 8)
-    print("R_ans is %s" % R_ans)
-    file.writefile(R_ans, 9)
+    # print("I_ans is %s" % I_ans)
+    # file.writefile(I_ans, 7)
+    # print("D_ans is %s" % D_ans)
+    # file.writefile(D_ans, 8)
+    # print("R_ans is %s" % R_ans)
+    # file.writefile(R_ans, 9)
 
     # 重複が無い時(入力ミスをした文字が登録パスワードに含まれていない場合？)
     #  I=1 or I=2
@@ -130,6 +129,7 @@ if __name__ == '__main__':
         Lev.print_results(results)
         i = compare(pw.change_register_pw(rg_pw), pw.change_enter_pw(line, len(rg_pw)), len(rg_pw), len(line))
         print(i)
+        print("---------------")
         line = f2.readline().rstrip('\r\n')
         file.writefile("a", 12)
 

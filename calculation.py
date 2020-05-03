@@ -10,7 +10,6 @@ def calc_I_D(r_num_list, e_num_list):
                     temp = r_num_list[i]
     if temp:
         if sorted(r_num_list) == sorted(e_num_list):
-            print(temp)
             return temp
         else:
             return []
@@ -72,7 +71,7 @@ def calc_i_d_r(r_num_list, r_pw_len, e_num_list, e_pw_len):
 
 
 #  IまたはDの桁が１と2が混在している時を探す関数
-def calc_i_d_size(ans):
+def calc_i_d_r_size(ans):
     digit = [0, 0]
     if len(ans) == 1:
         digit[0] += 1
@@ -96,6 +95,4 @@ def calc_min(ans):
 
 
 def combinations(n, r):
-    print(n)
-    print(r)
     return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
