@@ -1,5 +1,6 @@
 def pattern_ans_size(all_ans_size, check_ans):
     II_DD_RR = 0
+
     II_DD_R = 0
     II_D_R = 0
     I_DD_R = 0
@@ -51,8 +52,14 @@ def pattern_ans_size(all_ans_size, check_ans):
         else:
             return "error"
 
-    if II_DD_RR >= 1 or II_DD_R >= 1 or II_D_R >= 1 or I_DD_R >= 1 or I_D_R >= 1:
+    if II_DD_RR >= 1:
+        delete_0(all_ans_size, check_ans)
+        return all_ans_size
+    elif II_DD_R >= 1 or II_D_R >= 1 or I_DD_R >= 1:
         delete_1(all_ans_size, check_ans)
+        return all_ans_size
+    elif I_D_R >= 1:
+        delete_1_1_1(all_ans_size, check_ans)
         return all_ans_size
     elif II_DD_Z >= 1:
         delete_2(all_ans_size, check_ans)
@@ -74,7 +81,22 @@ def pattern_ans_size(all_ans_size, check_ans):
 
 
 # 5/2 Rが存在する場合、Rが存在しないペアは削除する
+def delete_0(all_ans_size, check_ans):
+    for m in range(len(check_ans)):
+        if check_ans[m][2] < 2:
+            all_ans_size[m] = 0
+
+
+# 5/2 Rが存在する場合、Rが存在しないペアは削除する
 def delete_1(all_ans_size, check_ans):
+    for m in range(len(check_ans)):
+        if check_ans[m][2] < 1:
+            all_ans_size[m] = 0
+        elif check_ans[m][0] == 1 and check_ans[m][1] == 1:
+            all_ans_size[m] = 0
+
+
+def delete_1_1_1(all_ans_size, check_ans):
     for m in range(len(check_ans)):
         if check_ans[m][2] < 1:
             all_ans_size[m] = 0
