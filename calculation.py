@@ -60,12 +60,12 @@ def calc_i_d_r(r_num_list, r_pw_len, e_num_list, e_pw_len):
     i_ans = calc_number(r_num_list, r_pw_len)
     d_ans = calc_number(e_num_list, e_pw_len)
     r_ans = calc_replacement(i_ans, d_ans)
-    # I=1 D=1の時(特殊パターン:順番が違う)
-    if i_ans == [] and d_ans == []:
-        tmp = calc_I_D(r_num_list, e_num_list)
-        if tmp:
-            r_ans.append(tmp[0])
-            r_ans.append(tmp[1])
+    # # I=1 D=1の時(特殊パターン:順番が違う)
+    # if i_ans == [] and d_ans == []:
+    #     tmp = calc_I_D(r_num_list, e_num_list)
+    #     if tmp:
+    #         r_ans.append(tmp[0])
+    #         r_ans.append(tmp[1])
     ans = [i_ans, d_ans, r_ans]
     return ans
 
