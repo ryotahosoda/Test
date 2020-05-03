@@ -1,9 +1,0 @@
-bccdef
-bbadef
-bbcaef
-bbcdaf
-bbcdea
-aaadef
-aacaef
-aacdaf
-aacdea

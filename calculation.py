@@ -81,6 +81,20 @@ def calc_i_d_r_size(ans):
     return digit
 
 
+# サイズを見て桁を格納する関数
+def calc_check(ans):
+    result = []
+    for m in ans:
+        length = len(m)
+        if length == 1:
+            result.append(1)
+        elif length == 2:
+            result.append(2)
+        else:
+            result.append(0)
+    return result
+
+
 #  ある1つの組み合わせの桁の最小値を計算
 def calc_min(ans):
     res = 0
@@ -96,3 +110,8 @@ def calc_min(ans):
 
 def combinations(n, r):
     return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
+
+
+if __name__ == '__main__':
+    ans = [[1], [3], []]
+    print(calc_check(ans))

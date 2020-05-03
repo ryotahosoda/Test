@@ -2,6 +2,7 @@ import copy
 import calculation as calc
 import itertools
 import numpy as np
+import Pattern as pt
 
 
 # 4/30 重複する組み合わせの中から正しい組み合わせを検索して、最適なI,D,R_ansを返す関数を作成
@@ -78,32 +79,12 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
         #  計算結果をまとめ用配列に格納
         all_ans_size.append(result[1])
 
-    # IとDの各々のサイズが混在してた場合は大きいほうを使うようにする処理（[1]と[1,4]とか）
-    I_dig = [0, 0]  # [桁数1,桁数2]
-    D_dig = [0, 0]
-    R_dig = [0, 0]
+    # digitをまとめる
+    check_ans = []
     for m in all_ans:
-        tmp_i = calc.calc_i_d_r_size(m[0])
-        I_dig[0] += tmp_i[0]
-        I_dig[1] += tmp_i[1]
-        tmp_d = calc.calc_i_d_r_size(m[1])
-        D_dig[0] += tmp_d[0]
-        D_dig[1] += tmp_d[1]
-        tmp_r = calc.calc_i_d_r_size(m[2])
-        R_dig[0] += tmp_r[0]
-        R_dig[1] += tmp_r[1]
+        check_ans.append(calc.calc_check(m))
 
-    print("I_dig = %s" % I_dig)
-    print("D_dig = %s" % D_dig)
-    print("R_dig = %s" % R_dig)
-    # Rが存在する場合は最優先する
-    if R_dig[0] >= 1 or R_dig[1] >= 1:
-        delete_no_r(all_ans, all_ans_size, 2)
-    # 片方1以上、片方0はそのまま、両方1以上は２の方だけ使う その時単体のものも削除する
-    elif I_dig[0] >= 1 and I_dig[1] >= 1:
-        delete_pair_list(all_ans, all_ans_size, 0)
-    elif D_dig[0] >= 1 and D_dig[1]:
-        delete_pair_list(all_ans, all_ans_size, 1)
+    all_ans_size = pt.pattern_ans_size(all_ans_size, check_ans)
 
     #  最小値を選択して、インデックスを検索　ここを変更する
     box = []
@@ -183,21 +164,6 @@ def list_position(r_result):
     return tmp
 
 
-# 5/2 サイズが1のペアを削除する
-def delete_pair_list(all_ans, all_ans_size, ans_type):
-    # ans_type==0はI,1はD
-    for m in range(len(all_ans)):
-        if len(all_ans[m][ans_type]) <= 1:
-            all_ans_size[m] = 0
-
-
-# 5/2 Rが存在する場合、Rが存在しないペアは削除する
-def delete_no_r(all_ans, all_ans_size, ans_type):
-    for m in range(len(all_ans)):
-        if len(all_ans[m][ans_type]) == 0:
-            all_ans_size[m] = 0
-
-
 if __name__ == '__main__':
     # r_pw = [[('a', 'b', 'c', 'd'), (5, 6)], [('a', 'b', 'c', 'd'), (5, 6)], [('a', 'b', 'c', 'f'), (4, 5)],
     #         [('a', 'b', 'c', 'f'), (4, 5)], [('a', 'b', 'd', 'f'), (3, 5)], [('a', 'b', 'd', 'f'), (3, 5)],
@@ -211,7 +177,9 @@ if __name__ == '__main__':
     # e_pw_len = 7
     # element_calc(r_pw, e_pw, r_pw_len, e_pw_len)
 
-    all_ans = [[[1], [3], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []],
-               [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []],
-               [[1], [], []], [[1], [2], []]]
-    print(len(all_ans[0]))
+    # all_ans = [[[1], [3], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []],
+    #     #            [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []], [[1], [], []],
+    #     #            [[1], [], []], [[1], [2], []]]
+    #     # print(len(all_ans[0]))
+    a = list(itertools.product([0, 1, 2], [0, 1, 2], [0, 1, 2]))
+    print(a)
