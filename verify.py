@@ -33,7 +33,6 @@ def compare(r_pw, e_pw, len_pw, enter_len_pw):
 
 
 def search(r_result, e_result, len_pw, enter_len_pw):
-
     # 重複あり、なしに関わらず各ansを計算する
     tmp = el.element_calc(r_result, e_result, len_pw, enter_len_pw)
 

@@ -1,8 +1,12 @@
 from sys import argv, exit
 from typing import Tuple, List
 import csv
+import copy
 
 dict = {'m': 'match', 'i': 'insertion', 'd': 'deletion', 'r': 'replacement'}
+I_cost = 1
+D_cost = 1
+R_cost = 1
 
 
 # def validation_argv() -> None:
@@ -30,9 +34,9 @@ def calculate_cost(table: List[List[Tuple[int, int, int]]], word1: str, word2: s
             if word1[column - 1] == word2[row - 1]:
                 table[row][column] = table[row - 1][column - 1][0], row - 1, column - 1
             else:
-                up_left = (table[row - 1][column - 1][0] + 1, row - 1, column - 1)
-                left = (table[row][column - 1][0] + 1, row, column - 1)
-                up = (table[row - 1][column][0] + 1, row - 1, column)
+                up_left = (table[row - 1][column - 1][0] + R_cost, row - 1, column - 1)
+                left = (table[row][column - 1][0] + D_cost, row, column - 1)
+                up = (table[row - 1][column][0] + I_cost, row - 1, column)
                 table[row][column] = sorted([up_left, left, up], key=lambda x: x[0])[0]
     return table
 
@@ -64,19 +68,30 @@ def judge_result(table: List[List[Tuple[int, int, int]]], word1: str, word2: str
 
 def print_results(results: List[Tuple[str, str]]) -> None:
     i = 1
+    I_ans = ["I", []]
+    D_ans = ["D", []]
+    R_ans = ["R", []]
     ans = []
+    tmp = []
     for result in results:
         if dict[result[1]] != "match":
             if dict[result[1]] == "replacement":
-                ans.append([i, result[0], 'R'])
+                R_ans[1].append(i)
             elif dict[result[1]] == "insertion":
-                ans.append([i, result[0], 'I'])
+                I_ans[1].append(i)
             elif dict[result[1]] == "deletion":
-                ans.append([i, result[0], 'D'])
+                D_ans[1].append(i)
         i += 1
 
     i = 0
-    print(ans)
+    tmp.append(R_ans)
+    tmp.append(D_ans)
+    tmp.append(I_ans)
+    for m in tmp:
+        if m[1]:
+            ans.append(m)
+    print(results)
+    print(ans[0])
     make_csv(ans)
 
 
@@ -90,11 +105,8 @@ def make_csv(ans):
 
 if __name__ == '__main__':
     word1 = "abcdef"
-    word2 = "cdefA"
+    word2 = "aBCdef"
     table = initialize_table(word1, word2)
-
     calculated_table = calculate_cost(table, word1, word2)
-    # print_table(calculated_table)
-
     results = judge_result(calculated_table, word1, word2)
     print_results(results)

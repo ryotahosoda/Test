@@ -13,10 +13,14 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
     all_no_pair = []  # 全ての重複していない残りの配列
     all_ans = []  # 全てのペアのミスの種類
     all_ans_size = []  # 全てのペアのミスの最小値
-    dup_list_num = max(list_pos)  # 重複している部分の個数
+    if list_pos:
+        dup_list_num = max(list_pos)  # 重複している部分の個数
 
     # 重複しない時
     dp = 0  # 重複するかどうかの判別用
+    I_ans = []
+    D_ans = []
+    R_ans = []
     for k in list_pos:
         dp += k
     if dp == 0:
@@ -99,12 +103,12 @@ def element_calc(r_result, e_result, r_pw_len, e_pw_len):
     R_ans = all_ans[index][2]
 
     # print(min(all_ans_size))
-    print("all_ans = %s" % all_ans)
-    print("all_ans_size = %s" % all_ans_size)
-    print("index = %d" % index)
-    print("I_ans = %s" % I_ans)
-    print("D_ans = %s" % D_ans)
-    print("R_ans = %s" % R_ans)
+    # print("all_ans = %s" % all_ans)
+    # print("all_ans_size = %s" % all_ans_size)
+    # print("index = %d" % index)
+    # print("I_ans = %s" % I_ans)
+    # print("D_ans = %s" % D_ans)
+    # print("R_ans = %s" % R_ans)
 
     return [I_ans, D_ans, R_ans]
 

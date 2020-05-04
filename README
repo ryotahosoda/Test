@@ -1,0 +1,118 @@
+パスワードリマインドシステムにおけるハッシュ値を用いた保存方法を用いた時の入力ミスの特定方法
+
+ファイル構成
+1:main.py
+2:verify.py
+3:calculation.py
+4:ElementCalc.py
+5:Levenshtein.py
+6:password.py
+7:ApAns.py
+8:Pattern.py
+
+テスト用確認ファイル
+1:Result.csv
+2:NotMatch_XX.csv
+3:NotMatch_XX.txt
+4:Detail.txt
+5:pw.txt
+
+以下、各ファイルの詳細
+ファイル構成
+
+1:main.py
+概要:起動するためのファイル
+main()
+    1:pw.txtを読み込み1つずつパスワードを比較して、Result.txtとNotMatch_XX.csvとNotMatch_XX.txtを作成する。
+    2:Detail.txtを作成する
+
+2:verify.py
+概要：パスワード同士を比較するためのファイル
+compare(r_pw, e_pw, len_pw, enter_len_pw)
+    入力
+        r_pw:登録パスワード文字列 str型
+        e_pw:入力パスワード文字列　str型
+        len_pw:登録パスワード長　int型
+        enter_len_pw:入力パスワード長　int型
+    出力
+        なし(or[['R', [1]], ['I', [2]]])
+
+    1:パスワードの桁数が許容桁±ならエラー
+    2:入力パスワードと登録パスワードが一致したら一致と返す
+    3:search()を呼ぶ
+
+search(r_result, e_result, len_pw, enter_len_pw)
+    入力
+        r_pw:登録パスワード文字列 str型
+        e_pw:入力パスワード文字列　str型
+        len_pw:登録パスワード長　int型
+        enter_len_pw:入力パスワード長　int型
+    出力
+        ヒントの種類と位置:[['ミスの種類', [位置]],['ミスの種類', [位置]]]
+        一つしかなかった場合は二個目は空リスト
+	一致しなかったり、許可していない組み合わせの場合は、エラーを返す。
+    	
+    1:el.element_calc()を呼び出して各ansを計算する
+    2:各ansを用いて条件分岐する
+
+3:calculation.py
+calc_I_D(r_num_list, e_num_list)
+
+calc_replacement(I_ans, D_ans)
+
+calc_number(list, length)
+
+calc_i_d_r(r_num_list, r_pw_len, e_num_list, e_pw_len)
+
+calc_i_d_r_size(ans)
+
+calc_check(ans):
+
+calc_min(ans):
+
+combinations(n, r):
+
+4:ElementCalc.py
+概要：パスワードの比較を行う時に使う配列を作成しansを計算する。
+element_calc(r_result, e_result, r_pw_len, e_pw_len)
+    入力
+        r_result：登録パスワードの部分文字列の中で、入力パスワードと一致したもの 配列 [[(文字列), (位置)]]かっこ多い
+        e_result：入力パスワードの部分文字列の中で、登録パスワードと一致したもの　配列　[[(文字列), (位置)]]　
+        r_len:登録パスワード長　int型
+        e_pw_len:入力パスワード長　int型
+    出力
+	    [I_ans, D_ans, R_ans]：各ミスの位置　配列
+
+    1:重複しているかどうかを確認する。
+    2:重複がない場合、部分一致文字列、登録パスワードと入力パスワードの部分一致文字列の含まれない文字の位置の3つを求めて、calc.calc_i_d_r()で各入力ミスがある位置を特定して配列を返す
+    3:重複がある場合、全ての組を計算してどれを選ぶかを優先順位に合わせて求め、同じように配列を返す
+make_pair(r_result, e_result)
+    入力
+        r_result：登録パスワードの部分一致文字列の重複している配列
+        e_result：入力パスワードの部分一致文字列の重複している配列
+    出力
+        tmp:登録、入力パスワードの重複している配列をひとまとめにしている配列　[[(文字列),(位置)],[(文字列),(位置)]]
+
+search_pair(num_list, all_list_pair)
+    入力
+        num_list：重複ペアの直積の計算結果　タプル(0, 0, 0, 0)
+        all_list_pair：重複がある一つの組み合わせ　[[[[(文字列),(位置)],[(文字列),(位置)]],[[(文字列),(位置)],[(文字列),(位置)]]],[[[(文字列),(位置)],[(文字列),(位置)]],[[(文字列),(位置)],[(文字列),(位置)]]]]
+            [[(文字列),(位置)]=[(文字列),(位置)]],[[(文字列),(位置)]=[(文字列),(位置)]]の繰り返し
+    出力
+        tmp:直積を用いて特定の位置にある組み合わせの配列
+
+make_miss(all_list_pair, all_no_pair, r_pw_len, e_pw_len)
+    入力
+        all_list_pair：あるひとつの組み合わせの配列　
+        all_no_pair:重複がない部分の配列
+        r_len:登録パスワード長　int型
+        e_pw_len:入力パスワード長　int型
+    出力
+        [ans, ans_size]:i,r,dのミスの位置の配列と、その位置の合計の最小値
+
+list_position(r_result):
+    入力
+        r_result:登録パスワードの部分一致文字列の重複している配列
+    出力
+        tmp:重複する部分の個数と種類を正の整数の配列を返す
+
