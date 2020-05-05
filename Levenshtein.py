@@ -2,6 +2,7 @@ from sys import argv, exit
 from typing import Tuple, List
 import csv
 import copy
+import file
 
 dict = {'m': 'match', 'i': 'insertion', 'd': 'deletion', 'r': 'replacement'}
 I_cost = 1
@@ -90,9 +91,10 @@ def print_results(results: List[Tuple[str, str]]) -> None:
     for m in tmp:
         if m[1]:
             ans.append(m)
-    print(results)
-    print(ans[0])
+    if len(ans) == 1:
+        ans.append([])
     make_csv(ans)
+    return ans
 
 
 def make_csv(ans):
@@ -103,10 +105,18 @@ def make_csv(ans):
     f.close()
 
 
+def make_correct_ans(line, rg_pw):
+    tb = initialize_table(line, rg_pw)
+    calc_tb = calculate_cost(tb, line, rg_pw)
+    res = judge_result(calc_tb, line, rg_pw)
+    return print_results(res)
+
+
 if __name__ == '__main__':
-    word1 = "abcdef"
-    word2 = "aBCdef"
+    word1 = "acdXef"
+    word2 = "abcdef"
     table = initialize_table(word1, word2)
     calculated_table = calculate_cost(table, word1, word2)
     results = judge_result(calculated_table, word1, word2)
-    print_results(results)
+
+    file.make_result("abcdef", [["D", [5]], ["I", [2]]], print_results(results))

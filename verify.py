@@ -48,11 +48,11 @@ def search(r_result, e_result, len_pw, enter_len_pw):
     R_ans = tmp[2]
 
     # print("I_ans is %s" % I_ans)
-    # file.writefile(I_ans, 7)
+    # # file.writefile(I_ans, 7)
     # print("D_ans is %s" % D_ans)
-    # file.writefile(D_ans, 8)
+    # # file.writefile(D_ans, 8)
     # print("R_ans is %s" % R_ans)
-    # file.writefile(R_ans, 9)
+    # # file.writefile(R_ans, 9)
 
     # 重複が無い時(入力ミスをした文字が登録パスワードに含まれていない場合？)
     #  I=1 or I=2

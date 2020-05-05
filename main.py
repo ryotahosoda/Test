@@ -9,13 +9,11 @@ def main():
     line = f.readline().rstrip('\r\n')
     while line:
         rg_pw = "abcdef"  # 登録パスワード
-        table = Lev.initialize_table(line, rg_pw)
-        calculated_table = Lev.calculate_cost(table, line, rg_pw)
-        results = Lev.judge_result(calculated_table, line, rg_pw)
-        Lev.print_results(results)
-        i = ver.compare(pw.change_register_pw(rg_pw), pw.change_enter_pw(line, len(rg_pw)), len(rg_pw), len(line))
-        print(i)
+        cor_ans = Lev.make_correct_ans(line, rg_pw)
+        ans = ver.compare(pw.change_register_pw(rg_pw), pw.change_enter_pw(line, len(rg_pw)), len(rg_pw), len(line))
+        print(ans)
         print("---------------")
+        file.make_result(line, ans, cor_ans)
         line = f.readline().rstrip('\r\n')
         file.writefile("a", 12)
 

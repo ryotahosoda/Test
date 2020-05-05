@@ -3,7 +3,7 @@ import file
 
 # typeは"I""D""R" ansは[3][3,4]とか
 def append_ans_single(ans_type, ans_num):
-    Total_ans = [ans_type, ans_num]
+    Total_ans = [[ans_type, ans_num], []]
     file.writefile(Total_ans, 10)
     return Total_ans
 

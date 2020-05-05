@@ -9,6 +9,7 @@
 6:password.py
 7:ApAns.py
 8:Pattern.py
+9:file.py
 
 テスト用確認ファイル
 1:Result.csv
@@ -116,3 +117,11 @@ list_position(r_result):
     出力
         tmp:重複する部分の個数と種類を正の整数の配列を返す
 
+9:file.py
+make_result(ent_pw, ans, cor_ans)
+    入力
+        ent_pw:入力パスワード　int
+        ans:入力ミスの種類と位置　二次元配列
+        cor_ans:Levで求めた入力ミスの種類と位置　二次元配列
+    出力
+        なし
