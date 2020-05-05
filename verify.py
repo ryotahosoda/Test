@@ -41,7 +41,7 @@ def search(r_result, e_result, len_pw, enter_len_pw):
     # print("len_pw = %d" % len_pw)
     # print("enter_len_pw = %d" % enter_len_pw)
 
-    file.make_match2(r_result, e_result)
+    # file.make_match2(r_result, e_result)
 
     I_ans = tmp[0]
     D_ans = tmp[1]

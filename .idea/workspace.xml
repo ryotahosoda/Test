@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb8b1c4f-5b67-4f9e-a974-376952582e5e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/MakePwPair.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApAns.py" beforeDir="false" afterPath="$PROJECT_DIR$/ApAns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Levenshtein.py" beforeDir="false" afterPath="$PROJECT_DIR$/Levenshtein.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ans.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/correct_ans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/correct_ans.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.py" beforeDir="false" afterPath="$PROJECT_DIR$/file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match.txt" beforeDir="false" afterPath="$PROJECT_DIR$/match.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pw.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verify.py" beforeDir="false" afterPath="$PROJECT_DIR$/verify.py" afterDir="false" />
@@ -59,33 +56,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\MYDATA\workspace_pycharm\Test\data" />
       <recent name="C:\MYDATA\workspace_pycharm\Test" />
       <recent name="C:\Users\涼太\PycharmProjects\DemoLevenshtein\" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="ElementCalc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="DemoLevenshtein" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ElementCalc.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Levenshtein" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DemoLevenshtein" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,6 +77,28 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Levenshtein.py" />
       <option name="PARAMETERS" value="abcdef" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MakePwPair" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DemoLevenshtein" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MakePwPair.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -177,17 +175,17 @@
     <list>
       <item itemvalue="Python.Levenshtein" />
       <item itemvalue="Python.verify" />
-      <item itemvalue="Python.ElementCalc" />
       <item itemvalue="Python.file" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.MakePwPair" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.MakePwPair" />
+        <item itemvalue="Python.file" />
         <item itemvalue="Python.verify" />
         <item itemvalue="Python.Levenshtein" />
-        <item itemvalue="Python.file" />
-        <item itemvalue="Python.ElementCalc" />
       </list>
     </recent_temporary>
   </component>
@@ -242,7 +240,7 @@
       <workItem from="1588592496638" duration="171000" />
       <workItem from="1588592678377" duration="2442000" />
       <workItem from="1588598753232" duration="2006000" />
-      <workItem from="1588642454381" duration="6506000" />
+      <workItem from="1588642454381" duration="18361000" />
     </task>
     <task id="LOCAL-00001" summary="verify.pyの中で重複ありなしの部分を簡潔にした">
       <created>1588410819503</created>
@@ -293,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588600714374</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="make_result()を追加と出力の修正">
+      <created>1588649322114</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588649322114</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +328,8 @@
     <MESSAGE value="[[1],[1],[0]]と[[1,2],[1],[0]]の時右を優先するように、桁が大きいほうを優先するようにした" />
     <MESSAGE value="Rが1以上の時かつIとDのサイズに違いがある時の処理を追加" />
     <MESSAGE value="Levenshtein.pyで、ミスの出力を変更" />
-    <option name="LAST_COMMIT_MESSAGE" value="Levenshtein.pyで、ミスの出力を変更" />
+    <MESSAGE value="make_result()を追加と出力の修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="make_result()を追加と出力の修正" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588253837546">
@@ -334,46 +340,50 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="722" y="383" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1160@0.0.1920.1160" timestamp="1588567447169" />
-    <state x="588" y="174" key="CommitChangelistDialog2" timestamp="1588600713600">
+    <state x="690" y="327" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588662863367">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="588" y="174" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1588600713600" />
+    <state x="690" y="327" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1588662863367" />
+    <state x="588" y="174" key="CommitChangelistDialog2" timestamp="1588649321329">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="588" y="174" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1588649321329" />
     <state x="740" y="321" key="FileChooserDialogImpl" timestamp="1588592517979">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="321" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1588592517979" />
-    <state width="1877" height="329" key="GridCell.Tab.0.bottom" timestamp="1588649075714">
+    <state width="1877" height="329" key="GridCell.Tab.0.bottom" timestamp="1588662812485">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588649075714" />
-    <state width="1877" height="329" key="GridCell.Tab.0.center" timestamp="1588649075714">
+    <state width="1877" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588662812485" />
+    <state width="1877" height="329" key="GridCell.Tab.0.center" timestamp="1588662812485">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="329" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588649075714" />
-    <state width="1877" height="329" key="GridCell.Tab.0.left" timestamp="1588649075714">
+    <state width="1877" height="329" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588662812485" />
+    <state width="1877" height="329" key="GridCell.Tab.0.left" timestamp="1588662812485">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="329" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588649075714" />
-    <state width="1877" height="329" key="GridCell.Tab.0.right" timestamp="1588649075714">
+    <state width="1877" height="329" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588662812485" />
+    <state width="1877" height="329" key="GridCell.Tab.0.right" timestamp="1588662812485">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="329" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588649075714" />
-    <state width="1877" height="395" key="GridCell.Tab.1.bottom" timestamp="1588648780474">
+    <state width="1877" height="329" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588662812485" />
+    <state width="1877" height="395" key="GridCell.Tab.1.bottom" timestamp="1588656269544">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588648780474" />
-    <state width="1877" height="395" key="GridCell.Tab.1.center" timestamp="1588648780474">
+    <state width="1877" height="395" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588656269544" />
+    <state width="1877" height="395" key="GridCell.Tab.1.center" timestamp="1588656269544">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588648780474" />
-    <state width="1877" height="395" key="GridCell.Tab.1.left" timestamp="1588648780474">
+    <state width="1877" height="395" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588656269544" />
+    <state width="1877" height="395" key="GridCell.Tab.1.left" timestamp="1588656269544">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588648780474" />
-    <state width="1877" height="395" key="GridCell.Tab.1.right" timestamp="1588648780474">
+    <state width="1877" height="395" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588656269544" />
+    <state width="1877" height="395" key="GridCell.Tab.1.right" timestamp="1588656269544">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588648780474" />
+    <state width="1877" height="395" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588656269544" />
     <state x="468" y="222" key="SettingsEditor" timestamp="1588412688521">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -396,13 +406,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/file.py</url>
-          <line>97</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/verify.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="5" />
+          <line>144</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -413,12 +418,18 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="cor_ans2" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Test$file.coverage" NAME="file Coverage Results" MODIFIED="1588646162974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Test$file.coverage" NAME="file Coverage Results" MODIFIED="1588660952033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Test$MakePwPair.coverage" NAME="MakePwPair Coverage Results" MODIFIED="1588662066310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$test.coverage" NAME="test Coverage Results" MODIFIED="1588253828815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$verify.coverage" NAME="verify Coverage Results" MODIFIED="1588646887874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Test$main.coverage" NAME="main Coverage Results" MODIFIED="1588649075698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Test$main.coverage" NAME="main Coverage Results" MODIFIED="1588662812477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$calculation.coverage" NAME="calculation Coverage Results" MODIFIED="1588477233682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$ElementCalc.coverage" NAME="ElementCalc Coverage Results" MODIFIED="1588490247642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Test$Levenshtein.coverage" NAME="Levenshtein Coverage Results" MODIFIED="1588646491875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
